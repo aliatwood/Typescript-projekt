@@ -1,13 +1,35 @@
-<h2>Kurser</h2>
+<div class="kurser-container">
+  <h1>Kurser</h1>
 
-<input
-  type="text"
-  placeholder="Sök kurskod eller kursnamn"
-  [(ngModel)]="searchText"
-/>
+  <div class="filter-bar">
+    <input type="text" placeholder="Sök på kurskod eller kursnamn..." />
+    <select>
+      <option value="">Alla ämnen</option>
+    </select>
+  </div>
 
-<ul>
-  <li *ngFor="let course of courses">
-    {{ course.courseCode }} - {{ course.courseName }}
-  </li>
-</ul>
+  <p>Visar {{ filteredCourses.length }} kurser</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Kurskod</th>
+        <th>Kursnamn</th>
+        <th>Poäng</th>
+        <th>Ämne</th>
+        <th>Nivå</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of filteredCourses">
+        <td>{{ course.courseCode }}</td>
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.points }}</td>
+        <td>{{ course.subject }}</td>
+        <td>{{ course.level }}</td>
+        <td><button>+ Lägg till</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
