@@ -13,6 +13,8 @@ export class Kurser implements OnInit {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchText: string = '';
+  subjects: string[] = [];
+  selectedSubject: string = '';
 
   constructor(private courseService: CourseService) {}
 
@@ -20,14 +22,17 @@ export class Kurser implements OnInit {
     this.courseService.getCourses().subscribe(data => {
       this.courses = data;
       this.filteredCourses = data;
+      this.subjects = [...new Set(data.map(c => c.subject))].sort();
     });
   }
 
   filter(): void {
     const search = this.searchText.toLowerCase();
-    this.filteredCourses = this.courses.filter(c =>
-      c.courseCode.toLowerCase().includes(search) ||
-      c.courseName.toLowerCase().includes(search)
-    );
+    this.filteredCourses = this.courses.filter(c => {
+      const matchSearch = c.courseCode.toLowerCase().includes(search) ||
+                          c.courseName.toLowerCase().includes(search);
+      const matchSubject = this.selectedSubject ? c.subject === this.selectedSubject : true;
+      return matchSearch && matchSubject;
+    });
   }
 }
