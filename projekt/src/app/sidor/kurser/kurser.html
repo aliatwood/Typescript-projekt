@@ -1,7 +1,13 @@
 <h2>Kurser</h2>
 
+<input
+  type="text"
+  placeholder="Sök kurskod eller kursnamn"
+  [(ngModel)]="searchText"
+/>
+
 <ul>
   <li *ngFor="let course of courses">
-    {{ course.courseCode }} - {{ course.courseName }} ({{ course.points }} hp)
+    {{ course.courseCode }} - {{ course.courseName }}
   </li>
 </ul>
