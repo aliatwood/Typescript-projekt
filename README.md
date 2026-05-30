@@ -36,4 +36,4 @@ ng serve
 
 ## Publicerad webbplats
 Webbplatsen publiceras automatiskt via **GitHub Pages**.  
-[Länk till den publicerade webbplatsen](https://aliatwood.github.io/Typescript-projekt/)
+[Länk till den publicerade webbplatsen](https://aliatwood.github.io/Typescript-projekt/hem)
