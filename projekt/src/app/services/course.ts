@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Course{
+export interface Course {
   courseCode: string;
   subjectCode: string;
   level: string;
@@ -17,8 +17,7 @@ export interface Course{
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService{
-
+export class CourseService {
   private url = 'miun_courses.json';
 
   constructor(private http: HttpClient) {}

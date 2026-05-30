@@ -2,7 +2,7 @@
   <h1>Kurser</h1>
 
   <div class="filter-bar">
-    <input type="text" placeholder="Sök på kurskod eller kursnamn..." />
+    <input type="text" placeholder="Sök på kurskod eller kursnamn..." [(ngModel)]="searchText" (input)="filter()" />
     <select>
       <option value="">Alla ämnen</option>
     </select>
