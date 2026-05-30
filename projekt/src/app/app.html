@@ -1,6 +1,11 @@
 <nav>
   <a routerLink="/kurser" routerLinkActive="active">Kurser</a>
-  <a routerLink="/ramschema" routerLinkActive="active">Ramschema</a>
+  <a routerLink="/ramschema" routerLinkActive="active">
+    Ramschema
+    <span class="badge" *ngIf="scheduleService.getCourses().length > 0">
+      {{ scheduleService.getCourses().length }}
+    </span>
+  </a>
 </nav>
 
 <router-outlet />
