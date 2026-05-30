@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CourseService, Course } from '../../services/course';
@@ -11,13 +11,38 @@ import { ScheduleService } from '../../services/schedule';
   styleUrl: './kurser.css',
 })
 export class Kurser implements OnInit {
-  courses: Course[] = [];
-  filteredCourses: Course[] = [];
-  searchText: string = '';
-  subjects: string[] = [];
-  selectedSubject: string = '';
-  sortColumn: string = '';
-  sortAsc: boolean = true;
+  private allCourses = signal<Course[]>([]);
+  searchText = signal('');
+  selectedSubject = signal('');
+  sortColumn = signal('');
+  sortAsc = signal(true);
+  subjects = signal<string[]>([]);
+
+  filteredCourses = computed(() => {
+    const search = this.searchText().toLowerCase();
+    const subject = this.selectedSubject();
+    const column = this.sortColumn();
+    const asc = this.sortAsc();
+
+    let result = this.allCourses().filter(c => {
+      const matchSearch = c.courseCode.toLowerCase().includes(search) ||
+                          c.courseName.toLowerCase().includes(search);
+      const matchSubject = subject ? c.subject === subject : true;
+      return matchSearch && matchSubject;
+    });
+
+    if (column) {
+      result = [...result].sort((a, b) => {
+        const valA = (a as any)[column];
+        const valB = (b as any)[column];
+        if (valA < valB) return asc ? -1 : 1;
+        if (valA > valB) return asc ? 1 : -1;
+        return 0;
+      });
+    }
+
+    return result;
+  });
 
   constructor(
     private courseService: CourseService,
@@ -26,37 +51,18 @@ export class Kurser implements OnInit {
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data => {
-      this.courses = data;
-      this.filteredCourses = data;
-      this.subjects = [...new Set(data.map(c => c.subject))].sort();
-    });
-  }
-
-  filter(): void {
-    const search = this.searchText.toLowerCase();
-    this.filteredCourses = this.courses.filter(c => {
-      const matchSearch = c.courseCode.toLowerCase().includes(search) ||
-                          c.courseName.toLowerCase().includes(search);
-      const matchSubject = this.selectedSubject ? c.subject === this.selectedSubject : true;
-      return matchSearch && matchSubject;
+      this.allCourses.set(data);
+      this.subjects.set([...new Set(data.map(c => c.subject))].sort());
     });
   }
 
   sort(column: string): void {
-    if (this.sortColumn === column) {
-      this.sortAsc = !this.sortAsc;
+    if (this.sortColumn() === column) {
+      this.sortAsc.set(!this.sortAsc());
     } else {
-      this.sortColumn = column;
-      this.sortAsc = true;
+      this.sortColumn.set(column);
+      this.sortAsc.set(true);
     }
-
-    this.filteredCourses.sort((a, b) => {
-      const valA = (a as any)[column];
-      const valB = (b as any)[column];
-      if (valA < valB) return this.sortAsc ? -1 : 1;
-      if (valA > valB) return this.sortAsc ? 1 : -1;
-      return 0;
-    });
   }
 
   addToSchedule(course: Course): void {

@@ -2,14 +2,14 @@
   <h1>Kurser</h1>
 
   <div class="filter-bar">
-    <input type="text" placeholder="Sök på kurskod eller kursnamn..." [(ngModel)]="searchText" (input)="filter()" />
-    <select [(ngModel)]="selectedSubject" (change)="filter()">
+    <input type="text" placeholder="Sök på kurskod eller kursnamn..." [ngModel]="searchText()" (ngModelChange)="searchText.set($event)" />
+    <select [ngModel]="selectedSubject()" (ngModelChange)="selectedSubject.set($event)">
       <option value="">Alla ämnen</option>
-      <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+      <option *ngFor="let subject of subjects()" [value]="subject">{{ subject }}</option>
     </select>
   </div>
 
-  <p>Visar {{ filteredCourses.length }} kurser</p>
+  <p>Visar {{ filteredCourses().length }} kurser</p>
 
   <table>
     <thead>
@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let course of filteredCourses">
+      <tr *ngFor="let course of filteredCourses()">
         <td>{{ course.courseCode }}</td>
         <td>{{ course.courseName }}</td>
         <td>{{ course.points }}</td>
