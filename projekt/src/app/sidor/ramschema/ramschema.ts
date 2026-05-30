@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ramschema',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './ramschema.html',
   styleUrl: './ramschema.css',
 })
