@@ -14,10 +14,10 @@
   <table>
     <thead>
       <tr>
-        <th (click)="sort('courseCode')">Kurskod</th>
-        <th (click)="sort('courseName')">Kursnamn</th>
-        <th (click)="sort('points')">Poäng</th>
-        <th (click)="sort('subject')">Ämne</th>
+        <th (click)="sort('courseCode')">Kurskod {{ sortColumn() === 'courseCode' ? (sortAsc() ? '↑' : '↓') : '' }}</th>
+        <th (click)="sort('courseName')">Kursnamn {{ sortColumn() === 'courseName' ? (sortAsc() ? '↑' : '↓') : '' }}</th>
+        <th (click)="sort('points')">Poäng {{ sortColumn() === 'points' ? (sortAsc() ? '↑' : '↓') : '' }}</th>
+        <th (click)="sort('subject')">Ämne {{ sortColumn() === 'subject' ? (sortAsc() ? '↑' : '↓') : '' }}</th>
         <th>Nivå</th>
         <th></th>
       </tr>
