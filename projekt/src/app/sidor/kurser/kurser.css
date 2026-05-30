@@ -106,6 +106,7 @@ button:hover {
   table {
     display: block;
     overflow-x: auto;
+    white-space: nowrap;
   }
 
   .filter-bar {
