@@ -1,0 +1,46 @@
+nav {
+  background: linear-gradient(135deg, #6b4fa0, #4a9b6f);
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+nav a.active {
+  background: rgba(255,255,255,0.25);
+  font-weight: 700;
+}
+
+@media (max-width: 1023px) {
+  nav {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    width: 100%;
+    display: block;
+  }
+}

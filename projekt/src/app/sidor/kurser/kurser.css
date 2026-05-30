@@ -1,0 +1,114 @@
+.kurser-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  color: #6b4fa0;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-bar input,
+.filter-bar select {
+  padding: 0.6rem 1rem;
+  border: 2px solid #c9b8e8;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+  border-color: #6b4fa0;
+}
+
+p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: linear-gradient(135deg, #6b4fa0, #4a9b6f);
+  color: white;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+}
+
+th:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #f0eaf8;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #f9f5ff;
+}
+
+button {
+  background: #4a9b6f;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #3a7d59;
+}
+
+@media (max-width: 1023px) {
+  table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 0.6rem 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+  }
+}
