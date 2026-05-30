@@ -19,7 +19,7 @@ export interface Course{
 })
 export class CourseService{
 
-  private url = 'assets/miun_courses.json';
+  private url = 'miun_courses.json';
 
   constructor(private http: HttpClient) {}
 
