@@ -35,6 +35,15 @@ nav a.active {
   margin-left: 0.4rem;
 }
 
+footer {
+  background: linear-gradient(135deg, #6b4fa0, #4a9b6f);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 5rem;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 1023px) {
   nav {
     padding: 1rem;
