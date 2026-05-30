@@ -92,6 +92,11 @@ button:hover {
   background: #3a7d59;
 }
 
+button:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
 @media (max-width: 1023px) {
   table {
     font-size: 0.9rem;

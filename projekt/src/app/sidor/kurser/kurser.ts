@@ -68,4 +68,8 @@ export class Kurser implements OnInit {
   addToSchedule(course: Course): void {
     this.scheduleService.addCourse(course);
   }
+
+  isInSchedule(courseCode: string): boolean {
+    return this.scheduleService.getCourses().some(c => c.courseCode === courseCode);
+  }
 }
