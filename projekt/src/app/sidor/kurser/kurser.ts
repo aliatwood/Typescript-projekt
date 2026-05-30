@@ -15,6 +15,8 @@ export class Kurser implements OnInit {
   searchText: string = '';
   subjects: string[] = [];
   selectedSubject: string = '';
+  sortColumn: string = '';
+  sortAsc: boolean = true;
 
   constructor(private courseService: CourseService) {}
 
@@ -33,6 +35,23 @@ export class Kurser implements OnInit {
                           c.courseName.toLowerCase().includes(search);
       const matchSubject = this.selectedSubject ? c.subject === this.selectedSubject : true;
       return matchSearch && matchSubject;
+    });
+  }
+
+  sort(column: string): void {
+    if (this.sortColumn === column) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortColumn = column;
+      this.sortAsc = true;
+    }
+
+    this.filteredCourses.sort((a, b) => {
+      const valA = (a as any)[column];
+      const valB = (b as any)[column];
+      if (valA < valB) return this.sortAsc ? -1 : 1;
+      if (valA > valB) return this.sortAsc ? 1 : -1;
+      return 0;
     });
   }
 }
