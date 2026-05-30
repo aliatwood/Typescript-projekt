@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CourseService, Course } from '../../services/course';
+import { ScheduleService } from '../../services/schedule';
 
 @Component({
   selector: 'app-kurser',
@@ -18,7 +19,10 @@ export class Kurser implements OnInit {
   sortColumn: string = '';
   sortAsc: boolean = true;
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private scheduleService: ScheduleService
+  ) {}
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data => {
@@ -53,5 +57,9 @@ export class Kurser implements OnInit {
       if (valA > valB) return this.sortAsc ? 1 : -1;
       return 0;
     });
+  }
+
+  addToSchedule(course: Course): void {
+    this.scheduleService.addCourse(course);
   }
 }

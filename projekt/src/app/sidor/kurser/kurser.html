@@ -29,7 +29,7 @@
         <td>{{ course.points }}</td>
         <td>{{ course.subject }}</td>
         <td>{{ course.level }}</td>
-        <td><button>+ Lägg till</button></td>
+        <td><button (click)="addToSchedule(course)">+ Lägg till</button></td>
       </tr>
     </tbody>
   </table>
