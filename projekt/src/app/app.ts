@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App{
   // Publikt så att navbar-badge kan läsa antal kurser i ramschemat
   constructor(public scheduleService: ScheduleService) {}
 }
